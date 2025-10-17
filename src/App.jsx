@@ -9,6 +9,8 @@ import HomePage from "./app/pages/HomePage";
 import LoginPage from "./app/pages/LoginPage";
 import TestPage from "./app/pages/TestPage";
 import BasePage from "./app/pages/BasePage";
+import React from "react";
+
 
 const theme = createTheme({
   typography: {
@@ -24,7 +26,7 @@ export default function App() {
 
         <BrowserRouter basename="/">
           <Routes>
-            <Route path="/base" element={<BasePage />}>
+            <Route path="/" element={<BasePage />}>
               <Route path="login" element={<LoginPage />} />
               <Route path="test" element={<TestPage />} />
             </Route>

@@ -4,7 +4,8 @@
 -Install TailwindCSS
 
 
+created login page with axios integration and form validation; configured CORS & credentials
 
-created  routing using the way of browserRouter and Routes, route children, outlet
-
-created footer
+- built login page in frontend using React Hook Form with Zod for validation
+- implemented API requests with axios (enabled withCredentials: true)
+- installed and configured CORS middleware in backend (set origin, credentials: true)
