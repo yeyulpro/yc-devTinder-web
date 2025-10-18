@@ -17,3 +17,8 @@ Setup Redux store and fetch login user
 - Created Redux store
 - Fetched login user data via Axios
 - Displayed user data in UI
+
+****************
+
+create accountApi with RTK Query, refactor userData fetching, update navbar menu
+

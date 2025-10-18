@@ -11,15 +11,23 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { useSelector } from "react-redux";
+import { useProfileQuery } from "../apis/userApi";
 import FavoriteBorderSharpIcon from "@mui/icons-material/FavoriteBorderSharp";
+import { Link } from "react-router-dom";
 
 const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+// const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = [
+  { name: "feed", linkTo: "/feed" },
+  { name: "profile", linkTo: "/profile" },
+  { name: "test", linkTo: "/test" },
+  { name: "logout", linkTo: "/logout" },
+];
+
+// ["Profile", "Account", "Dashboard", "Logout"];
 
 export default function Navbar() {
-  const loginUser = useSelector((state) => state.user);
-  console.log("loginUser", loginUser);
+  const { data: loginUser } = useProfileQuery();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -161,9 +169,13 @@ export default function Navbar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography sx={{ textAlign: "center" }}>
-                    {setting}
+                <MenuItem key={setting.name} onClick={handleCloseUserMenu}>
+                  <Typography
+                    component={Link}
+                    to={setting.linkTo}
+                    sx={{ textAlign: "center" }}
+                  >
+                    {setting.name}
                   </Typography>
                 </MenuItem>
               ))}

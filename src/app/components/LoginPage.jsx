@@ -1,8 +1,6 @@
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
-import CssBaseline from "@mui/material/CssBaseline";
 import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
@@ -13,14 +11,11 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../utils/loginSchema";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
-import axios from "axios";
-import { addUser } from "../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../utils/baseApi";
+import { useLoginMutation  } from "../apis/userApi";
 
 export default function LoginPage() {
-  const dispatch = useDispatch();
+  const [login] = useLoginMutation();  
   const navigate = useNavigate();
 
   const {
@@ -33,11 +28,8 @@ export default function LoginPage() {
   });
   const onSubmit = async (data) => {
     try {
-      const res = await axios.post(BASE_URL + "/login", data, {
-        withCredentials: true,
-      });
-      dispatch(addUser(res.data));
-      toast("Wow so easy!");
+      await login(data).unwrap();
+      toast("login succeeded!");
     } catch (error) {
       if (error.response) {
         toast("Login failed: " + error.response.data.message);
@@ -118,7 +110,9 @@ export default function LoginPage() {
             fullWidth
             variant="contained"
             sx={{ mt: 1, marginY: 2 }}
-           onClick={()=>{navigate('/feed')}}
+            onClick={() => {
+              navigate("/feed");
+            }}
           >
             Login
           </Button>

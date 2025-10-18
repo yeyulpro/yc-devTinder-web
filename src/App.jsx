@@ -10,6 +10,7 @@ import LoginPage from "./app/components/LoginPage";
 import FeedPage from "./app/components/FeedPage";
 import TestPage from "./app/components/TestPage";
 import BasePage from "./app/components/BasePage";
+import ProfilePage from "./app/components/ProfilePage";
 import { appStore } from "./app/store/appStore";
 import { Provider } from "react-redux";
 import React from "react";
@@ -32,6 +33,7 @@ export default function App() {
                 <Route path="login" element={<LoginPage />} />
                 <Route path="feed" element={<FeedPage />} />
                 <Route path="test" element={<TestPage />} />
+                <Route path="profile" element={<ProfilePage />} />
               </Route>
             </Routes>
           </BrowserRouter>
