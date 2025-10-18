@@ -13,9 +13,16 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../utils/loginSchema";
 import { toast } from "react-toastify";
-
+import { useDispatch } from "react-redux";
 import axios from "axios";
+import { addUser } from "../store/slices/userSlice";
+import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../utils/baseApi";
+
 export default function LoginPage() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -26,12 +33,11 @@ export default function LoginPage() {
   });
   const onSubmit = async (data) => {
     try {
-      const res = await axios.post("http://localhost:3000/login", data, {
+      const res = await axios.post(BASE_URL + "/login", data, {
         withCredentials: true,
       });
-
+      dispatch(addUser(res.data));
       toast("Wow so easy!");
-      return res.data;
     } catch (error) {
       if (error.response) {
         toast("Login failed: " + error.response.data.message);
@@ -76,7 +82,7 @@ export default function LoginPage() {
             autoComplete="email"
             autoFocus
             {...register("emailId")}
-            value="test@gmail.com"
+            value="test@mail.com"
           />
           <Typography sx={{ color: "#ff0000" }}>
             {errors.emailId?.message}
@@ -112,6 +118,7 @@ export default function LoginPage() {
             fullWidth
             variant="contained"
             sx={{ mt: 1, marginY: 2 }}
+            onClick={() => navigate("/feed")}
           >
             Login
           </Button>

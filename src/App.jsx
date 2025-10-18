@@ -5,12 +5,14 @@ import Typography from "@mui/material/Typography";
 import Navbar from "./app/layout/Navbar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "./app/pages/HomePage";
-import LoginPage from "./app/pages/LoginPage";
-import TestPage from "./app/pages/TestPage";
-import BasePage from "./app/pages/BasePage";
+import HomePage from "./app/components/HomePage";
+import LoginPage from "./app/components/LoginPage";
+import FeedPage from "./app/components/FeedPage";
+import TestPage from "./app/components/TestPage";
+import BasePage from "./app/components/BasePage";
+import { appStore } from "./app/store/appStore";
+import { Provider } from "react-redux";
 import React from "react";
-
 
 const theme = createTheme({
   typography: {
@@ -21,18 +23,20 @@ const theme = createTheme({
 export default function App() {
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-
-        <BrowserRouter basename="/">
-          <Routes>
-            <Route path="/" element={<BasePage />}>
-              <Route path="login" element={<LoginPage />} />
-              <Route path="test" element={<TestPage />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </ThemeProvider>
+      <Provider store={appStore}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <BrowserRouter basename="/">
+            <Routes>
+              <Route path="/" element={<BasePage />}>
+                <Route path="login" element={<LoginPage />} />
+                <Route path="feed" element={<FeedPage />} />
+                <Route path="test" element={<TestPage />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </ThemeProvider>
+      </Provider>
     </>
   );
 }

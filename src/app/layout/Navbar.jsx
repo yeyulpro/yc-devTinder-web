@@ -11,13 +11,16 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+import { useSelector } from "react-redux";
 import FavoriteBorderSharpIcon from "@mui/icons-material/FavoriteBorderSharp";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 export default function Navbar() {
+  const loginUser = useSelector((state) => state.user);
+  console.log("loginUser", loginUser);
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -131,7 +134,14 @@ export default function Navbar() {
                 onClick={handleOpenUserMenu}
                 sx={{ p: 0, fontSize: "1.2rem" }}
               >
-                <Avatar alt="Remy Sharp" src="/images/dragonkid.jpg" />
+                {loginUser && (
+                  <>
+                    <Typography sx={{ color: "#FFFF", mr: 2 }}>
+                      Hello💕 {loginUser.first_name} {loginUser.last_name}
+                    </Typography>
+                    <Avatar alt="Remy Sharp" src={loginUser.photoUrl} />
+                  </>
+                )}
               </IconButton>
             </Tooltip>
             <Menu

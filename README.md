@@ -9,3 +9,11 @@ created login page with axios integration and form validation; configured CORS &
 - built login page in frontend using React Hook Form with Zod for validation
 - implemented API requests with axios (enabled withCredentials: true)
 - installed and configured CORS middleware in backend (set origin, credentials: true)
+
+...........
+Setup Redux store and fetch login user
+
+- Installed @reduxjs/toolkit and react-redux
+- Created Redux store
+- Fetched login user data via Axios
+- Displayed user data in UI
