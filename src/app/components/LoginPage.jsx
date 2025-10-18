@@ -16,12 +16,12 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { addUser } from "../store/slices/userSlice";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/baseApi";
 
 export default function LoginPage() {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -118,7 +118,7 @@ export default function LoginPage() {
             fullWidth
             variant="contained"
             sx={{ mt: 1, marginY: 2 }}
-          
+           onClick={()=>{navigate('/feed')}}
           >
             Login
           </Button>
