@@ -12,10 +12,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../utils/loginSchema";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { useLoginMutation  } from "../apis/userApi";
+import { useLoginMutation } from "../apis/userApi";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../store/slices/userSlice";
 
 export default function LoginPage() {
-  const [login] = useLoginMutation();  
+  const [login] = useLoginMutation();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const {
@@ -28,7 +31,8 @@ export default function LoginPage() {
   });
   const onSubmit = async (data) => {
     try {
-      await login(data).unwrap();
+      const userData = await login(data).unwrap();
+      dispatch(loginUser(userData));
       toast("login succeeded!");
     } catch (error) {
       if (error.response) {

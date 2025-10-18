@@ -5,7 +5,8 @@ import { BASE_URL } from "./baseUrl";
 // Define a service using a base URL and expected endpoints
 export const accountApi = createApi({
   reducerPath: "accountApi",
-  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL ,credentials: "include",}),
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL, credentials: "include" }),
+  tagTypes: ["UserInfo"],
   endpoints: (builder) => ({
     login: builder.mutation({
       query: (creds) => ({
@@ -16,20 +17,33 @@ export const accountApi = createApi({
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled;
-          dispatch(accountApi.util.invalidateTags(['profile']))
+          dispatch(accountApi.util.invalidateTags(["profile"]));
         } catch (err) {
-          console.log(err.message)
+          console.log(err.message);
         }
-      }
+      },
     }),
 
     profile: builder.query({
-      query: ()=>"profile/view",
-      providesTags:["profile"]
-    })
-    
+      query: () => "profile/view",
+      providesTags: ["profile"],
+    }),
+
+    logout: builder.mutation({
+      query: () => ({
+        url: "logout",
+        method: "POST",
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          dispatch(accountApi.util.invalidateTags(["profile"]));
+        } catch (err) {
+          console.log(err.message);
+        }
+      },
+    }),
   }),
 });
-
-
-export const { useLoginMutation, useProfileQuery} = accountApi;
+export const { useLoginMutation, useProfileQuery, useLogoutMutation } =
+  accountApi;

@@ -20,5 +20,9 @@ Setup Redux store and fetch login user
 
 ****************
 
-create accountApi with RTK Query, refactor userData fetching, update navbar menu
+create accountApi with RTK Query, refactor user data fetching, update Navbar menu
 
+Using only RTK Query to manage login/logout state via cookies is tricky. 
+Mixing RTK Query with a Redux slice is a safer approach.
+
+......................
