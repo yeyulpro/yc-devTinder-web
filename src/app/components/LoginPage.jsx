@@ -34,6 +34,7 @@ export default function LoginPage() {
       const userData = await login(data).unwrap();
       dispatch(loginUser(userData));
       toast("login succeeded!");
+      navigate("/feed");
     } catch (error) {
       if (error.response) {
         toast("Login failed: " + error.response.data.message);
@@ -114,9 +115,6 @@ export default function LoginPage() {
             fullWidth
             variant="contained"
             sx={{ mt: 1, marginY: 2 }}
-            onClick={() => {
-              navigate("/feed");
-            }}
           >
             Login
           </Button>

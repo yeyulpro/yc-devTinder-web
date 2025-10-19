@@ -14,9 +14,10 @@ import MenuItem from "@mui/material/MenuItem";
 import FavoriteBorderSharpIcon from "@mui/icons-material/FavoriteBorderSharp";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useLogoutMutation } from "../apis/userApi";
 import { removeUser } from "../store/slices/userSlice";
-import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const pages = ["Products", "Pricing", "Blog"];
 
@@ -29,12 +30,14 @@ const settings = [
 export default function Navbar() {
   const loginUser = useSelector((state) => state.user);
   const dispatch = useDispatch();
-
+  const [logout] = useLogoutMutation();
   const navigate = useNavigate();
 
   const logoutHandler = async () => {
     try {
+      await logout();
       dispatch(removeUser());
+      toast("logout success!");
       navigate("/feed");
     } catch (error) {
       console.log(error.message);

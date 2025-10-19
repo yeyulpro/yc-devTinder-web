@@ -26,3 +26,4 @@ Using only RTK Query to manage login/logout state via cookies is tricky.
 Mixing RTK Query with a Redux slice is a safer approach.
 
 ......................
+feat(feedPage): create slice & RTK feedApi, update login/logout to sync token with UI
