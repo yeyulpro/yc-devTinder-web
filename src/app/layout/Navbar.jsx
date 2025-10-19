@@ -18,13 +18,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLogoutMutation } from "../apis/userApi";
 import { removeUser } from "../store/slices/userSlice";
 import { toast } from "react-toastify";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
-const pages = ["Products", "Pricing", "Blog"];
+const pages = ["Feed", "Profile", "Edit"];
 
 const settings = [
   { name: "feed", linkTo: "/feed" },
   { name: "profile", linkTo: "/profile" },
-  { name: "test", linkTo: "/test" },
+  { name: "edit", linkTo: "/edit" },
 ];
 
 export default function Navbar() {
@@ -63,7 +64,7 @@ export default function Navbar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{bgcolor: '#ff4d6d'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <FavoriteBorderSharpIcon
@@ -82,6 +83,7 @@ export default function Navbar() {
               color: "inherit",
               textDecoration: "none",
               fontFamily: "cursive",
+              fontSize:'2rem'
             }}
           >
             YC-Tinder
@@ -116,7 +118,7 @@ export default function Navbar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: "center" }}>{page}</Typography>
+                  <Typography sx={{ textAlign: "center"}}>{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -145,7 +147,7 @@ export default function Navbar() {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{ my: 2, color: "white", display: "block" , fontSize:'1.2rem', fontWeight:'bold'}}
               >
                 {page}
               </Button>
@@ -162,10 +164,10 @@ export default function Navbar() {
           >
             {!loginUser ? (
               <>
-                <Button component={Link} to="/register" sx={{ color: "#fff" }}>
+                <Button component={Link} to="/register" sx={{ color: "rgba(255, 255, 255, 0.95)", fontSize:'1.2rem', fontWeight:'bold' }}>
                   Register
                 </Button>
-                <Button component={Link} to="/login" sx={{ color: "#fff" }}>
+                <Button component={Link} to="/login" sx={{ color: "#fafafa" , fontSize:'1.2rem', fontWeight:'bold'}}>
                   Login
                 </Button>
               </>
@@ -177,7 +179,7 @@ export default function Navbar() {
                     sx={{ p: 0, fontSize: "1.2rem" }}
                   >
                     <Typography sx={{ color: "#FFFF", mr: 2 }}>
-                      Hello💕 {loginUser.first_name} {loginUser.last_name}
+                      Hello,<FavoriteBorderIcon/>  {loginUser.first_name} {loginUser.last_name}
                     </Typography>
                     <Avatar alt="Remy Sharp" src={loginUser.photoUrl} />
                   </IconButton>

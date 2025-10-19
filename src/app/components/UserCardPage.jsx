@@ -5,31 +5,71 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import Paper from "@mui/material/Paper";
 
-
-export default function UserCardPage() {
+export default function UserCardPage({ user }) {
+  const { first_name, last_name, photoUrl, about, age, gender } = user || {};
   return (
-      
-    <Card sx={{ maxWidth: 345, boxShadow: 1 }}>
+    <Card
+      component={Paper}
+      elevation={11}
+      sx={{
+        width: 300,
+        boxShadow: 1,
+        bgcolor: "#FFB6C1",
+        borderRadius: 3,
+        border: "2px solid #FF4D6D",
+      }}
+    >
       <CardMedia
         component="img"
-        height="140"
-        image="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-        alt="Shoes"
+        height="290"
+        image={photoUrl}
+        alt="user photo"
+        sx={{ p: 2, borderRadius: 3 }}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Card Title
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          sx={{ textTransform: "capitalize" }}
+        >
+          {`${first_name} ${last_name}`}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          A card component has a figure, a body part, and inside body there are title and actions parts
+          {age && gender && <>{age + ", " + gender}</>}
+        </Typography>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{
+            display: "-webkit-box",
+            WebkitLineClamp: 2, // 최대 2줄
+            WebkitBoxOrient: "vertical",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
+          {about}
         </Typography>
       </CardContent>
-      <CardActions sx={{ justifyContent: "flex-end" }}>
-        <Button size="small" variant="contained" color="primary">
-          Buy Now
-        </Button>
+      <CardActions sx={{ justifyContent: "center" }}>
+        <ButtonGroup
+          size="small"
+          variant="contained"
+          sx={{ bgcolor: "#FF4D6D" }}
+        >
+          <Button sx={{ width: 100 }}>Ignore</Button>
+          <Button
+            variant="outlined"
+            sx={{ color: "#FF4D6D", bgcolor: "#FFFF", width: 100 }}
+          >
+            Interested
+          </Button>
+        </ButtonGroup>
       </CardActions>
     </Card>
-  )
+  );
 }

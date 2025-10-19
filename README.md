@@ -26,4 +26,11 @@ Using only RTK Query to manage login/logout state via cookies is tricky.
 Mixing RTK Query with a Redux slice is a safer approach.
 
 ......................
-feat(feedPage): create slice & RTK feedApi, update login/logout to sync token with UI
+Explanation / Notes:
+Login information (especially the token) retrieved via RTK Query must be manually dispatched to the Redux store to prevent data loss. Always ensure that credentials are stored in the store and accessed using useSelector.
+
+In RTK Query, unlike a query, a mutation does not automatically update the Redux store. Therefore, you need to manually dispatch the result.
+
+EditUserInfo can be implemented similarly to loginUser; the main difference is in the payload structure for each action.
+
+feat: add UserCardPage and ProfileEditPage with user update via RTK Query and Redux Toolkit

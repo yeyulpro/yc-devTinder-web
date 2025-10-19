@@ -22,7 +22,7 @@ export default function Footer() {
         spacing={2}
       >
         {/* Left: Logo + Copyright */}
-        <Grid item xs={12} md="auto">
+        <Grid>
           <Box
             sx={{
               display: "flex",
@@ -55,9 +55,6 @@ export default function Footer() {
 
         {/* Right: Social Icons */}
         <Grid
-          item
-          xs={12}
-          md="auto"
           sx={{
             display: "flex",
             justifyContent: { xs: "flex-start", md: "flex-end" },

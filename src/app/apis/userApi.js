@@ -29,6 +29,22 @@ export const accountApi = createApi({
       providesTags: ["profile"],
     }),
 
+    editProfile: builder.mutation({
+      query: (info) => ({
+        url: "profile/edit",
+        method: "PATCH",
+        body:info
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          dispatch(accountApi.util.invalidateTags(["profile"]));
+        } catch (err) {
+          console.log(err.message);
+        }
+      },
+    }),
+
     logout: builder.mutation({
       query: () => ({
         url: "logout",
@@ -45,5 +61,5 @@ export const accountApi = createApi({
     }),
   }),
 });
-export const { useLoginMutation, useProfileQuery, useLogoutMutation } =
+export const { useLoginMutation, useProfileQuery, useLogoutMutation, useEditProfileMutation } =
   accountApi;
