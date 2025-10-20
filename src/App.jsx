@@ -12,6 +12,7 @@ import { appStore } from "./app/store/appStore";
 import { Provider } from "react-redux";
 import ProfileEditPage from "./app/components/ProfileEditPage";
 import ConnectionsPage from "./app/components/ConnectionsPage";
+import NobodyPage from "./app/sharedComponents/Nobody";
 
 const theme = createTheme({
   typography: {
@@ -35,6 +36,8 @@ export default function App() {
                 <Route path="edit" element={<ProfileEditPage />} />
                 <Route path="profile" element={<ProfilePage />} />
                 <Route path="connections" element={<ConnectionsPage />} />
+                <Route path="nobody" element={<NobodyPage />} />
+                
               </Route>
             </Routes>
           </BrowserRouter>

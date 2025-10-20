@@ -13,6 +13,7 @@ export const userSlice = createSlice({
     editUserInfo: (state, action) => {
       return action.payload;
     },
+    
   },
 });
 

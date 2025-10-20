@@ -33,7 +33,7 @@ export const accountApi = createApi({
       query: (info) => ({
         url: "profile/edit",
         method: "PATCH",
-        body:info
+        body: info,
       }),
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
@@ -61,5 +61,9 @@ export const accountApi = createApi({
     }),
   }),
 });
-export const { useLoginMutation, useProfileQuery, useLogoutMutation, useEditProfileMutation } =
-  accountApi;
+export const {
+  useLoginMutation,
+  useProfileQuery,
+  useLogoutMutation,
+  useEditProfileMutation,
+} = accountApi;

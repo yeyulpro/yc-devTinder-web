@@ -23,9 +23,10 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 const pages = ["Feed", "Profile", "Edit"];
 
 const settings = [
-  { name: "feed", linkTo: "/feed" },
-  { name: "profile", linkTo: "/profile" },
-  { name: "edit", linkTo: "/edit" },
+  { name: "Feed", linkTo: "/feed" },
+  { name: "Profile", linkTo: "/profile" },
+  { name: "Edit", linkTo: "/edit" },
+  { name: "Connections", linkTo: "/connections" },
 ];
 
 export default function Navbar() {
