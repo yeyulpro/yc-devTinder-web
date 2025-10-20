@@ -5,10 +5,10 @@ export const feedApi = createApi({
   reducerPath: "feedApi",
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL, credentials: "include" }),
   endpoints: (builder) => ({
-    getFeed: builder.query({
+    getAllFeed: builder.query({
       query: () => "feed",
     }),
   }),
 });
 
-export const { useGetFeedQuery } = feedApi;
+export const { useGetAllFeedQuery } = feedApi;

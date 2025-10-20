@@ -10,8 +10,8 @@ import BasePage from "./app/components/BasePage";
 import ProfilePage from "./app/components/ProfilePage";
 import { appStore } from "./app/store/appStore";
 import { Provider } from "react-redux";
-import React from "react";
 import ProfileEditPage from "./app/components/ProfileEditPage";
+import ConnectionsPage from "./app/components/ConnectionsPage";
 
 const theme = createTheme({
   typography: {
@@ -34,7 +34,7 @@ export default function App() {
                 <Route path="feed" element={<FeedPage />} />
                 <Route path="edit" element={<ProfileEditPage />} />
                 <Route path="profile" element={<ProfilePage />} />
-                <Route path="connection" element={<ConnectionsPage />} />
+                <Route path="connections" element={<ConnectionsPage />} />
               </Route>
             </Routes>
           </BrowserRouter>

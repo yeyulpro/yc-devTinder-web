@@ -16,12 +16,12 @@ import { useLoginMutation } from "../apis/userApi";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../store/slices/userSlice";
 import { useState } from "react";
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import IconButton from '@mui/material/IconButton';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 export default function LoginPage() {
   const [login] = useLoginMutation();
@@ -82,7 +82,11 @@ export default function LoginPage() {
           <LockOutlinedIcon />
         </Avatar>
 
-        <Typography component="h1" variant="h5" sx={{color:"#444444",fontWeight:'bold'}} >
+        <Typography
+          component="h1"
+          variant="h5"
+          sx={{ color: "#444444", fontWeight: "bold" }}
+        >
           Login to your account
         </Typography>
 
@@ -98,23 +102,25 @@ export default function LoginPage() {
             autoComplete="email"
             autoFocus
             {...register("emailId")}
-           
           />
           <Typography sx={{ color: "#ff0000" }}>
             {errors.emailId?.message}
           </Typography>
           <Typography sx={{ color: "#ff0000" }}>{/* {email} */}</Typography>
 
-          <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+          <InputLabel htmlFor="outlined-adornment-password">
+            Password
+          </InputLabel>
           <OutlinedInput
-            id="outlined-adornment-password"   {...register("password")}
+            id="outlined-adornment-password"
+            {...register("password")}
             value="Passw0rd!"
-            type={showPassword ? 'text' : 'password'}
+            type={showPassword ? "text" : "password"}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
                   aria-label={
-                    showPassword ? 'hide the password' : 'display the password'
+                    showPassword ? "hide the password" : "display the password"
                   }
                   onClick={handleClickShowPassword}
                   onMouseDown={handleMouseDownPassword}
@@ -156,14 +162,23 @@ export default function LoginPage() {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 1, marginY: 2, fontWeight:'bold' }}
+            sx={{ mt: 1, marginY: 2, fontWeight: "bold" }}
           >
             Login
           </Button>
 
-          <Typography variant="body2" align="center" sx={{color:'#444444', fontWeight:'bold'}}>
+          <Typography
+            variant="body2"
+            align="center"
+            sx={{ color: "#444444", fontWeight: "bold" }}
+          >
             Not a member?{" "}
-            <Link href="/register" variant="body2" underline="hover" sx={{  borderColor: '#ff6b81', fontWeight:'bold'}}>
+            <Link
+              href="/register"
+              variant="body2"
+              underline="hover"
+              sx={{ borderColor: "#ff6b81", fontWeight: "bold" }}
+            >
               Sign Up
             </Link>
           </Typography>

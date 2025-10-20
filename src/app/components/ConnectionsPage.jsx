@@ -1,5 +1,5 @@
-export default function Connections() {
+export default function ConnectionsPage() {
   return (
-    <div>Connections</div>
+    <div>ConnectionsPage</div>
   )
 }
