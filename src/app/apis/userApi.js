@@ -6,7 +6,7 @@ import { BASE_URL } from "./baseUrl";
 export const accountApi = createApi({
   reducerPath: "accountApi",
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL, credentials: "include" }),
-  tagTypes: ["UserInfo"],
+  tagTypes: ["profile"],
   endpoints: (builder) => ({
     login: builder.mutation({
       query: (creds) => ({

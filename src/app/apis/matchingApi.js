@@ -6,12 +6,38 @@ import { BASE_URL } from "./baseUrl";
 export const matchingApi = createApi({
   reducerPath: "matchingApi",
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL, credentials: "include" }),
+
   endpoints: (builder) => ({
     connections: builder.query({
       query: () => "user/connections",
     }),
+
+    connectionRequest: builder.query({
+      query: () => "user/requests/received",
+    }),
+    acceptRequest: builder.mutation({
+      query: ({ state, id }) => ({
+        url: `request/send/${state}/${id}`,
+        method: "POST",
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          dispatch(matchingApi.util.invalidateTags(["getAllMembers"]));
+        } catch (err) {
+          console.log(err.message);
+        }
+      },
+    }),
+    getAllFeed: builder.query({
+      query: () => "feed",
+    }),
   }),
 });
+
 export const {
- useConnectionsQuery
+  useConnectionsQuery,
+  useConnectionRequestQuery,
+  useAcceptRequestMutation,
+  useGetAllFeedQuery,
 } = matchingApi;

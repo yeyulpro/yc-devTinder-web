@@ -7,6 +7,9 @@ export const matchingSlice = createSlice({
         connected: (state, action) => {
             return action.payload;
         },
+        requested: (state, action) => {
+            return action.payload;
+        }
     }
 })
-export const {  connected } = matchingSlice.actions;
+export const {  connected , requested} = matchingSlice.actions;

@@ -25,6 +25,8 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 export default function LoginPage() {
   const [login] = useLoginMutation();
+  // const { data } = useGetAllFeedQuery();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -40,6 +42,7 @@ export default function LoginPage() {
     try {
       const userData = await login(data).unwrap();
       dispatch(loginUser(userData));
+
       toast("login succeeded!");
       navigate("/feed");
     } catch (error) {
@@ -92,6 +95,7 @@ export default function LoginPage() {
 
         {/* form */}
         <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
+          <InputLabel sx={{mb:0}}>Email</InputLabel>
           <TextField
             margin="normal"
             required
@@ -101,17 +105,19 @@ export default function LoginPage() {
             name="email"
             autoComplete="email"
             autoFocus
+          sx={{mt:0}}
             {...register("emailId")}
           />
           <Typography sx={{ color: "#ff0000" }}>
             {errors.emailId?.message}
           </Typography>
-          <Typography sx={{ color: "#ff0000" }}>{/* {email} */}</Typography>
+          {/* <Typography sx={{ color: "#ff0000" }}>{email}</Typography> */}
 
           <InputLabel htmlFor="outlined-adornment-password">
             Password
           </InputLabel>
           <OutlinedInput
+            fullWidth
             id="outlined-adornment-password"
             {...register("password")}
             value="Passw0rd!"

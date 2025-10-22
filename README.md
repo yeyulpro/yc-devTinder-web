@@ -34,3 +34,6 @@ In RTK Query, unlike a query, a mutation does not automatically update the Redux
 EditUserInfo can be implemented similarly to loginUser; the main difference is in the payload structure for each action.
 
 feat: add UserCardPage and ProfileEditPage with user update via RTK Query and Redux Toolkit
+
+==========
+Where upon completion of login, the page is redirected to feedPage, the feed data does not accurately reflect the information. To resolve this matter, use pefetch the feed data while in the process of login.

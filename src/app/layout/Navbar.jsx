@@ -26,7 +26,9 @@ const settings = [
   { name: "Feed", linkTo: "/feed" },
   { name: "Profile", linkTo: "/profile" },
   { name: "Edit", linkTo: "/edit" },
+  { name: "Connection Request", linkTo: "/connect-request" },
   { name: "Connections", linkTo: "/connections" },
+ 
 ];
 
 export default function Navbar() {

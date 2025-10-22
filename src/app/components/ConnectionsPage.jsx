@@ -3,17 +3,13 @@ import { useConnectionsQuery } from "../apis/matchingApi";
 import UserCardPage from "./UserCardPage";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import { useEffect } from "react";
+
 
 export default function ConnectionsPage() {
   const navigate = useNavigate();
   const { data: connectedPartners, error, isLoading } = useConnectionsQuery();
+ console.log("connection"+connectedPartners)
 
-  useEffect(() => {
-    if (!connectedPartners || connectedPartners.length === 0) {
-      navigate("/nobody");
-    }
-  }, [connectedPartners, navigate]);
   if (isLoading) {
     return <Typography>Loading...</Typography>;
   }
@@ -21,7 +17,9 @@ export default function ConnectionsPage() {
   if (error) {
     return <Typography>Error loading data...</Typography>;
   }
-
+ if (!connectedPartners || connectedPartners.length === 0) {
+      navigate("/nobody");
+    }
   return (
     <Container
       maxWidth="xl"

@@ -202,7 +202,6 @@ export default function ProfileEditPage() {
                 autoComplete="about"
                 {...register("about")}
                 defaultValue={currentUserInfo?.about ?? ""}
-                
               />
 
               <Typography sx={{ color: "#ff0000" }}>
