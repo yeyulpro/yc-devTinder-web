@@ -37,3 +37,6 @@ feat: add UserCardPage and ProfileEditPage with user update via RTK Query and Re
 
 ==========
 Where upon completion of login, the page is redirected to feedPage, the feed data does not accurately reflect the information. To resolve this matter, use pefetch the feed data while in the process of login.
+======
+Separated LoginUserProfileCard from UserCardPage and modified UI
+Added codes to accepted and rejected functionalities

@@ -18,7 +18,7 @@ import { useEditProfileMutation } from "../apis/userApi";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { editUserInfo } from "../store/slices/userSlice";
-import UserCardPage from "./UserCardPage";
+import LoginUserProfileCard from "./LoginUserProfileCard";
 export default function ProfileEditPage() {
   const currentUserInfo = useSelector((state) => state.user);
   const [editProfile, { data: userNewInfo }] = useEditProfileMutation();
@@ -113,7 +113,7 @@ export default function ProfileEditPage() {
                   required
                   fullWidth
                   id="first_name"
-                  label="first Name"
+                  label=""
                   name="first_name"
                   autoComplete="first_name"
                   autoFocus
@@ -130,7 +130,7 @@ export default function ProfileEditPage() {
                   required
                   fullWidth
                   id="last_name"
-                  label="Last Name"
+                  label=""
                   name="last_name"
                   autoComplete="last_name"
                   autoFocus
@@ -165,7 +165,7 @@ export default function ProfileEditPage() {
                     >
                       {genders.map((option) => (
                         <MenuItem key={option.value} value={option.value}>
-                          {option.label}
+                          {option.value}
                         </MenuItem>
                       ))}
                     </TextField>
@@ -180,7 +180,7 @@ export default function ProfileEditPage() {
                   required
                   fullWidth
                   name="age"
-                  label="Age"
+                  label=""
                   type="text"
                   id="age"
                   autoComplete="age"
@@ -195,7 +195,7 @@ export default function ProfileEditPage() {
             <Grid size={12} padding={2}>
               <TextField
                 id="about"
-                label="About"
+                label=""
                 multiline
                 rows={2}
                 fullWidth
@@ -212,7 +212,7 @@ export default function ProfileEditPage() {
                 required
                 fullWidth
                 name="skills"
-                label="Skills"
+                label=""
                 type="skills"
                 id="skills"
                 autoComplete="skills"
@@ -227,7 +227,7 @@ export default function ProfileEditPage() {
                 required
                 fullWidth
                 id="photoUrl"
-                label="Photo Image"
+                label=""
                 name="photoUrl"
                 autoComplete="photoUrl"
                 autoFocus
@@ -262,7 +262,7 @@ export default function ProfileEditPage() {
         </Box>
       </Grid>
       <Grid size={3}>
-        <UserCardPage user={currentUserInfo} />
+        <LoginUserProfileCard user={currentUserInfo} />
       </Grid>
     </Grid>
   );

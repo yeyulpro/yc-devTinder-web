@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Paper from "@mui/material/Paper";
 
-export default function UserCardPage({ user }) {
+export default function UserCardPage({ user, rejectHandler,acceptHandler }) {
   const { first_name, last_name, photoUrl, about, age, gender } = user || {};
   return (
     <Card
@@ -61,9 +61,10 @@ export default function UserCardPage({ user }) {
           variant="contained"
           sx={{ bgcolor: "#FF4D6D" }}
         >
-          <Button sx={{ width: 100 }}>Ignore</Button>
+          <Button sx={{ width: 100 }} onClick={rejectHandler}>Ignore</Button>
           <Button
             variant="outlined"
+            onClick={acceptHandler}
             sx={{ color: "#FF4D6D", bgcolor: "#FFFF", width: 100 }}
           >
             Interested
